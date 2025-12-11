@@ -21,7 +21,7 @@ class RecipeItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Recipe name goes here",
+            "${index + 1}.${recipe.recipeName}",
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -30,6 +30,20 @@ class RecipeItem extends StatelessWidget {
           ),
 
           const SizedBox(height: 8),
+          Row(
+            spacing: 5,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...recipe.emojiRatings.map((emoji) {
+                return ElevatedButton(
+                  onPressed: () {
+                    onSelectRating(index, emoji);
+                  },
+                  child: Text(emoji),
+                );
+              }),
+            ],
+          ),
         ],
       ),
     );
